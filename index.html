@@ -1,0 +1,230 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+		<script src="js/src/move.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/createData.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/scroll.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/audioCanvas.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--左侧  - 音乐列表开始-->
+		<div id="musicList">
+			<div class="title">
+				<h3>热门歌曲排行榜</h3>
+				<!--<span>音乐列表<br />tracks</span>-->
+			</div>
+			<span class="close">x</span>	
+			<div class="content">
+				<ul>
+					<!--<li>
+						<div class="cover">
+							<img src="img/default_album.jpg"/>
+						</div>
+						<div class="song-info">
+							<p class="song">
+								<span class="text">你是我心爱的姑娘</span>
+							</p>
+							<p class="singer">汪峰</span></p>
+							<p class="song-time">04:59</p>
+							<div class="song-mv"></div>
+						</div>
+						<div class="play-btn">
+							<span class="play-icon"></span>
+						</div>
+					</li>-->
+				</ul>
+				<div id="MusicScrollBar"><span class="scroll"></span></div>
+			</div>
+		</div>
+		<!--左侧  - 音乐列表结束-->
+		
+		<!--左侧  - 音乐详情开始-->
+		<div id="musicDetail">
+			<div class="musicDetail-mask"></div>
+			<div class="top">
+				<span class="music-list-btn">音乐列表</span>
+				<span class="lyric-btn">歌词</span>
+			</div>
+			<div class="music-detail-main">
+				<div class="cover">
+					<img src="img/default_album.jpg"/>
+				</div>
+				<div class="song-info">
+					<p class="song">
+						<span class="text-bg">你是我心爱的姑娘</span>
+						<span class="text">你是我心爱的姑娘</span>
+					</p>
+					<p class="singer">汪峰</span></p>
+					<p class="song-time"><span>00:00</span> / 00:00</p>
+				</div>
+			</div>
+			<span class="music-play-loop" id="musicPlayMode"></span>
+		</div>
+		<!--左侧  - 音乐详情结束-->
+		
+		<!--底部  - 音乐功能开始-->
+		<div id="progressMusic">
+			<span class="progress-all"></span>
+			<span class="progress"></span>
+			<span class="progress-mask"></span>
+		</div>
+		<div id="musicFunction">
+			<span class="music-prev-btn"></span>
+			<span class="music-play-btn"></span>
+			<span class="music-next-btn"></span>
+		</div>
+		<!--底部  - 音乐功能结束-->
+		
+		<!--顶部- 搜索功能开始-->
+		<div id="musicSearch">
+			<input type="text" placeholder="单曲/歌手/专辑" />
+		</div>
+		<!--顶部- 搜索功能结束-->
+		
+		<!--中心 - 歌词开始-->
+		<div id="lyric" style="display: none;">
+			<span class="close">X</span>
+			<ul class="lyric-list">
+				<li>今晚要嗨到收场 都嗨到收场</li>
+				<li>今晚要嗨到收场 都嗨到收场</li>
+				<li>今晚要嗨到收场 都嗨到收场</li>
+				<li>今晚要嗨到收场 都嗨到收场</li>
+				<li>今晚要嗨到收场 都嗨到收场</li>
+				<li>今晚要嗨到收场 都嗨到收场</li>
+				<li>今晚要嗨到收场 都嗨到收场</li>
+				<li>今晚要嗨到收场 都嗨到收场</li>
+				<li>今晚要嗨到收场 都嗨到收场</li>
+			</ul>
+			<div id="lycCurrent"></div>
+		</div>
+		<!--中心 - 歌词结束-->
+		
+		<!--MV开始-->
+		<div id="musicMV" style="display: none;">
+			<div class="content">
+				<video>
+					<source src="2.mp4" type="video/mp4"></source>
+				</video>
+				<div class="mv-mask">
+					<div class="mv-control">
+						<div class="mv-play" id="mvPlay"></div>
+						<div class="mv-progress">
+							<div class="progress-all"></div>
+							<div class="progress-cache"></div>
+							<div class="progress-current"></div>
+							<div class="progress-mask"></div>
+							<div class="mv-slider"></div>
+						</div>
+						<div class="mv-right">
+							<div class="mv-time"><span>00:00</span> / 10:11</div>
+							<div class="mv-volume">
+								<div class="icon-volume"></div>
+								<div class="volume-size">
+									<div class="volume-all"></div>
+									<div class="volume-current"></div>
+									<div class="volume-slider"></div>
+								</div>
+							</div>
+							<div id="fullscreen"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--MV结束-->
+		
+		<!--多人聊天开始-->
+		<div id="talk" style="background: red;">
+			<div class="message-all">
+				<div class="message-content">
+					<div class="main">
+						<div class="msg left">
+							<div class="icon"></div>
+							<div class="content">
+								<p><span>刘德华：</span>新年快乐</p>
+							</div>
+						</div>
+						<div class="msg left">
+							<div class="icon"></div>
+							<div class="content">
+								<p><span>刘德华：</span>新年快乐新年快乐</p>
+							</div>
+						</div>
+						<div class="msg left">
+							<div class="icon"></div>
+							<div class="content">
+								<p><span>刘德华：</span>新年快乐新年快乐新年快乐</p>
+							</div>
+						</div>
+						<div class="msg left">
+							<div class="icon"></div>
+							<div class="content">
+								<p><span>刘德华：</span>新年快乐</p>
+							</div>
+						</div>
+						<div class="msg right">
+							<div class="icon"></div>
+							<div class="content">
+								<p>恭贺新春</p>
+							</div>
+						</div>
+						<div class="msg right">
+							<div class="icon"></div>
+							<div class="content">
+								<p>恭贺新春</p>
+							</div>
+						</div>
+						<div class="msg right">
+							<div class="icon"></div>
+							<div class="content">
+								<p>恭贺新春恭贺新春恭贺新春恭贺新春恭贺新春恭贺新春恭贺新春恭贺新春</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="message-more">
+					<i></i>
+					<i></i>
+					<i></i>
+				</div>
+			</div>
+			<div class="message-send">
+				<div class="user"></div>
+				<div class="content">
+					<input type="text" placeholder="请输入内容" />
+					<button>发送</button>
+				</div>
+				<div class="set-user">
+					<div class="set-icon"></div>
+					<input type="text" class="set-name" placeholder="Your ID" />
+					<button class="set-ok">OK</button>
+				</div>
+			</div>
+		</div>
+		<!--多人聊天结束-->
+		
+		<!--在线人数开始-->
+		<div id="currentUser" style="display: none;">
+			<div class="current-number">10</div>
+			<div class="current-list">
+				<div class="content">
+					<p>刘德华<span>北京</span></p>
+					<p>梁朝伟<span>上海</span></p>
+					<p>周润发<span>香港</span></p>
+					<p>吴孟达<span>澳门</span></p>
+					<p>谢霆锋<span>广州</span></p>
+				</div>
+			</div>
+		</div>
+		<!--在线人数结束-->
+		
+		<!--音频播放器开始-->
+		<audio id="oAudio" autoplay></audio>
+		<!--音频播放器结束-->
+		
+		<div id="canvas"></div>
+	</body>
+</html>

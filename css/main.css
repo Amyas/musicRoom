@@ -1,0 +1,928 @@
+/*---------------默认样式---------------*/
+* {margin: 0;padding: 0;font-family: verdana;}
+body {background: url(../img/bg.gif) #333333;}
+li {list-style: none;}
+a {text-decoration: none;color: #291d1d;}
+img {vertical-align: middle;}
+.clearfix:after{content: "";display: block;clear: both;}
+h2 {font-weight: normal;}
+input{outline: none;border: none;}
+/*---------------默认样式---------------*/
+body {
+	position: relative;
+	min-width: 1180px;
+	min-height: 600px;
+	overflow: hidden;
+}
+
+
+/*---------------左侧 - 音乐列表开始---------------*/
+#musicList {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 256px;
+	height: 0;
+	opacity: 0;
+	padding-left: 20px;
+	box-sizing: border-box;
+	background: -webkit-linear-gradient(rgba(125,231,139,0.9), rgba(120,232,208,1));
+	background: -moz-linear-gradient(rgba(125,231,139,0.9), rgba(120,232,208,1));
+	background: -o-linear-gradient(rgba(125,231,139,0.9), rgba(120,232,208,1));
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(125,231,139,0.9)), to(rgba(120,232,208,1)));
+	background: linear-gradient(rgba(125,231,139,0.9), rgba(120,232,208,1));
+	overflow: hidden;
+	transition: .6s;
+}
+#musicList > .title {
+	width: 100%;
+	height: 30px;
+	padding: 16px 0 42px;
+	cursor: default;
+}
+#musicList > .title h3 {
+	font-size: 20px;
+	line-height: 28px;
+	color: #1a0406;
+	font-weight: normal;
+}
+#musicList > .title span {
+	position: absolute;
+	left: 76px;
+	top: 22px;
+	font-size: 12px;
+	color: #3e3e3e;
+	line-height: 12px;
+}
+#musicList > .close {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	font-size: 36px;
+	line-height: 11px;
+	cursor: default;
+}
+#musicList > .content {
+	position: relative;
+	height: 408px;
+	overflow: hidden;
+}
+#musicList > .content ul {
+	position: relative;
+	left: 0;
+	top: 0;
+}
+#musicList > .content ul li {
+	position: relative;
+	margin-bottom: 12px;
+	height: 48px;
+	cursor: pointer !important;
+}
+#musicList > .content ul li .cover {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 46px;
+	height: 46px;
+	border-radius: 5px;
+	overflow: hidden;
+	border: 1px solid #1a0406;
+}
+#musicList > .content ul li .cover img {
+	width: 100%;
+	height: 100%;
+}
+#musicList > .content ul li .song-info {
+	position: relative;
+	height: 48px;
+	line-height: 1;
+	padding-left: 54px;
+}
+#musicList > .content ul li .song-info .song {
+	position: relative;
+	font-size: 14px;
+}
+#musicList > .content ul li .song-info .song .text {
+	display: inline-block;
+	width: 140px;
+	height: 14px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #1a0406;
+}
+#musicList > .content ul li .song-info .singer {
+	color: #3e3e3e;
+	padding-top: 4px;
+	font-size: 12px;
+}
+#musicList > .content ul li .song-info .song-time {
+	color: #3e3e3e;
+	padding-top: 6px;
+	font-size: 12px;
+}
+#musicList > .content ul li .song-info .song-time span {
+	color: #8e908f;
+}
+#musicList > .content ul li .song-info .song-mv {
+	position: absolute;
+	right: 70px;
+	top: 30px;
+	width: 37px;
+	height: 20px;
+	background: url(../img/sprite.png) -125px -44px;
+}
+#musicList > .content ul li .play-btn {
+	display: none;
+	position: absolute;
+	right: 20px;
+	top: calc(50% - 13px);
+}
+#musicList > .content ul li .play-btn .play-icon {
+	display: block;
+	width: 22px;
+	height: 26px;
+	background: url(../img/sprite.png) -28px -42px;
+}
+#musicList > .content ul li:hover .play-btn,
+#musicList > .content ul li.active .play-btn {
+	display: block;
+}
+#MusicScrollBar {
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 6px;
+	height: 100%;
+	border-radius: 10px;
+    background-color: rgba(255,255,255,0.4);
+}
+#MusicScrollBar .scroll {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 6px;
+	height: 20px;
+	border-radius: 10px;
+	background-color: #252525;
+}
+/*---------------左侧 - 音乐列表结束---------------*/
+
+
+/*---------------左侧 - 音乐详情开始---------------*/
+#musicDetail {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 10;
+	width: 256px;
+	height: 90px;
+	padding: 10px 0 0 8px;
+	box-sizing: border-box;
+}
+#musicDetail .musicDetail-mask {
+	position: absolute;
+	left: 0;
+	top: 256px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: .6s;
+	box-sizing: border-box;
+	background-color: #333333;
+}
+#musicDetail > .top {
+	font-size: 12px;
+	color: #8e908f;
+	height: 14px;
+	line-height: 14px;
+	margin-bottom: 4px;
+}
+#musicDetail > .top .music-list-btn {
+	position: relative;
+	padding-left: 19px;
+	margin-right: 15px;
+	cursor: default;
+	text-shadow: -1px 0px 1px #1a0406;
+}
+#musicDetail > .top .music-list-btn::before {
+	content: "";
+	position: absolute;
+	left: 2px;
+	top: 3px;
+	width: 12px;
+	height: 10px;
+	box-shadow: -1px 0px 1px #1a0406;
+	background: url(../img/sprite.png) -67px -59px;
+}
+#musicDetail > .top .lyric-btn {
+	position: relative;
+	padding-left: 16px;
+	text-shadow: -1px 0px 1px #1a0406;
+	cursor: default;
+}
+#musicDetail > .top .lyric-btn::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 3px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	box-shadow: -1px 0px 1px #1a0406;
+	background: url(../img/sprite.png) -67px -42px;
+}
+#musicDetail .music-detail-main {
+	position: relative;
+	width: 100%;
+	height: 48px;
+}
+
+#musicDetail .music-detail-main .cover {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 46px;
+	height: 46px;
+	overflow: hidden;
+	border-radius: 5px;
+	border: 1px solid #1a0406;
+}
+#musicDetail .music-detail-main .cover img {
+	width: 100%;
+	height: 100%;
+}
+#musicDetail .song-info {
+	height: 48px;
+	line-height: 1;
+	padding-left: 54px;
+}
+#musicDetail .song-info .song {
+	position: relative;
+	font-size: 14px;
+}
+#musicDetail .song-info .song .text-bg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-image: -webkit-linear-gradient(to right, rgba(125,231,139,0.9), rgba(120,232,208,1));
+	background-image: -moz-linear-gradient(to right, rgba(125,231,139,0.9), rgba(120,232,208,1));
+	background-image: -o-linear-gradient(to right, rgba(125,231,139,0.9), rgba(120,232,208,1));
+	background-image: -webkit-gradient(linear, 100% 0, 0 0, from(rgba(125,231,139,0.9)), to(rgba(120,232,208,1)));
+	background-image: linear-gradient(to right, rgba(125,231,139,0.9), rgba(120,232,208,1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#musicDetail .song-info .song .text {
+	text-shadow: -1px 0px 1px rgba(26,4,6,1);
+}
+#musicDetail .song-info .singer {
+	color: #8e908f;
+	padding-top: 4px;
+	font-size: 12px;
+	text-shadow: -1px 0px 1px #1a0406;
+}
+#musicDetail .song-info .song-time {
+	color: #595d5b;
+	padding-top: 6px;
+	font-size: 12px;
+	text-shadow: -1px 0px 1px #1a0406;
+}
+#musicDetail .song-info .song-time span {
+	color: #8e908f;
+}
+#musicDetail #musicPlayMode {
+	position: absolute;
+	right: 30px;
+	bottom: 14px;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+#musicDetail #musicPlayMode {
+	background-image: url(../img/sprite.png);
+}
+#musicDetail .music-play-loop {
+	background-position: -94px -18px;
+}
+#musicDetail .music-play-loop:hover {
+	background-position: -94px 0;
+}
+#musicDetail .music-play-shuffle {
+	background-position: -136px -18px;
+}
+#musicDetail .music-play-shuffle:hover {
+	background-position: -136px 0;
+}
+#musicDetail .music-play-one {
+	background-position: -116px -18px;
+}
+#musicDetail .music-play-one:hover {
+	background-position: -116px 0;
+}
+/*---------------左侧 - 音乐详情结束---------------*/
+
+#progressMusic {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	z-index: 10;
+	cursor: pointer;
+	height: 4px;
+}
+#progressMusic .progress-all {
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 4px;
+	background-color: #252525;
+}
+#progressMusic .progress-mask {
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 99;
+	width: 100%;
+	height: 4px;
+}
+#progressMusic .progress {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 0;
+	height: 4px;
+	border-radius: 0 5px 5px 0;
+	background: linear-gradient(to right,rgba(125,231,139,0.9), rgba(120,232,208,1));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------------底部 - 音乐功能开始---------------*/
+#musicFunction {
+	position: absolute;
+	left: calc(50% - 70px - 57px);
+	bottom: 20px;
+	width: 140px;
+	height: 33px;
+}
+#musicFunction span {
+	position: absolute;
+	top: 9px;
+	width: 18px;
+	height: 15px;
+	cursor: pointer;
+}
+#musicFunction .music-prev-btn {
+	left: 0;
+	background: url(../img/sprite.png) 0 -19px;
+}
+#musicFunction .music-prev-btn:hover {
+	background: url(../img/sprite.png);
+}
+#musicFunction .music-play-btn {
+	left: 55px;
+	top: 0;
+	width: 29px;
+	height: 33px;
+	background: url(../img/sprite.png) -28px 0;
+}
+#musicFunction .music-play-btn.play {
+	background: url(../img/sprite.png) -61px 0;
+}
+#musicFunction .music-next-btn {
+	right: 0;
+	background: url(../img/sprite.png) 0 -59px;
+}
+#musicFunction .music-next-btn:hover {
+	background: url(../img/sprite.png) 0 -38px;
+}
+/*---------------底部 - 音乐功能结束---------------*/
+
+
+/*---------------顶部 - 搜索功能开始---------------*/
+#musicSearch {
+	position: absolute;
+	left: calc(50% - 103px - 57px);
+	top: -26px;
+	width: 206px;
+	height: 26px;
+	transition: .4s;
+}
+#musicSearch input {
+	position: absolute;
+	width: 206px;
+	height: 26px;
+	font-size: 12px;
+	color: #1a0406;
+	border-radius: 15px;
+	padding: 0 10px 0 28px;
+	background: url(../img/sprite.png) -85px -62px #eaeaea no-repeat;
+}
+#musicSearch input::selection {
+	background:#333; 
+	color:rgb(125,231,139);
+}
+#musicSearch input::-moz-selection {
+	background:#333; 
+	color:rgb(125,231,139);
+}
+#musicSearch input::-webkit-selection {
+	background:#333; 
+	color:rgb(125,231,139);
+}
+/*---------------顶部 - 搜索功能结束---------------*/
+
+/*---------------中心 - 歌词开始---------------*/
+#lyric {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 300px;
+	height: 256px;
+	margin-left: -100px;
+	margin-top: -125px;
+	text-align: center;
+	overflow: hidden;
+}
+#lyric .close {
+	position: absolute;
+	right: 20px;
+	top: 0;
+	font-size: 18px;
+	cursor: pointer;
+}
+#lyric .lyric-list {
+	position: absolute;
+	left: 50%;
+	top: 20px;
+	width: 100%;
+	transform: translateX(-50%);
+}
+#lyric .lyric-list li {
+	position: relative;
+	font-size: 14px;
+	line-height: 1;
+	height: 14px;
+	cursor: default;
+	color: #8e908f;
+	text-shadow: -1px 0px 1px #1a0406;
+}
+#lyric .lyric-list li + li {
+	margin-top: 10px;
+}
+#lyric .lyric-list li span {
+}
+#lyric .lyric-list li.active {
+	background-image: -webkit-linear-gradient(to right, rgba(125,231,139,0.9), rgba(120,232,208,1));
+	background-image: -moz-linear-gradient(to right, rgba(125,231,139,0.9), rgba(120,232,208,1));
+	background-image: -o-linear-gradient(to right, rgba(125,231,139,0.9), rgba(120,232,208,1));
+	background-image: -webkit-gradient(linear, 100% 0, 0 0, from(rgba(125,231,139,0.9)), to(rgba(120,232,208,1)));
+	background-image: linear-gradient(to right, rgba(125,231,139,0.9), rgba(120,232,208,1));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#lyric .lyric-list li.active {
+	text-shadow: none;
+}
+#lycCurrent {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 128px;
+	width: 100%;
+	height: 1px;
+	border-top: 1px dashed #8e908f;
+}
+/*---------------中心 - 歌词结束---------------*/
+
+
+/*---------------中心 - MV开始---------------*/
+#musicMV {
+	position: absolute;
+	left: 300px;
+	top: 100px;
+	width: 500px;
+	border-radius: 6px;
+	box-shadow: 0px 0px 5px 1px rgba(50,48,49,0.8);
+	overflow: hidden;
+}
+#musicMV .content {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	border-radius: 6px;
+}
+#musicMV .content video {
+	width: 100%;
+}
+#musicMV .content .mv-mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+#musicMV .mv-mask .mv-control {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+}
+#musicMV .mv-mask #mvPlay {
+	position: absolute;
+	left: 14px;
+	top: calc(50% - 7px);
+	width: 12px;
+	height: 14px;
+}
+#musicMV .mv-mask #mvPlay.mv-pause {
+	background: url(../img/sprite.png) -117px -86px;
+}
+#musicMV .mv-mask #mvPlay.mv-play {
+	background: url(../img/sprite.png) -98px -87px;
+}
+#musicMV .mv-mask .mv-progress {
+	position: absolute;
+	left: 40px;
+	top: calc(50% - 2px);
+	width: calc(500px - 40px - 157px - 14px);
+	height: 2px;
+}
+#musicMV .mv-mask .progress-all {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 2px;
+	background-color: rgba(255,255,255,0.3);
+}
+#musicMV .mv-mask .progress-cache {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 50%;
+	height: 2px;
+	background-color: rgba(255,255,255,0.4);
+}
+#musicMV .mv-mask .progress-current {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 30%;
+	height: 2px;
+	background-color: rgba(255,255,255,1);
+}
+#musicMV .mv-mask .progress-mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 2px;
+}
+#musicMV .mv-mask .mv-slider {
+	position: absolute;
+	left: 80%;
+	top: -4px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #fff;
+}
+#musicMV .mv-mask .mv-right {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 157px;
+	height: 40px;
+}
+#musicMV .mv-mask .mv-time {
+	position: absolute;
+	right: 70px;
+	top: calc(50% - 8px);
+	height: 16px;
+	line-height: 16px;
+	font-size: 12px;
+	color: rgba(255,255,255,0.8);
+}
+#musicMV .mv-mask .mv-volume {
+	position: absolute;
+	right: 42px;
+	top: calc(50% - 7px);
+	width: 14px;
+	height: 14px;
+}
+#musicMV .mv-mask .icon-volume {
+	width: 14px;
+	height: 14px;
+	background: url(../img/sprite.png) -24px -86px;
+}
+#musicMV .mv-mask .volume-size {
+	position: absolute;
+	left: 6px;
+	top: -54px;
+	width: 4px;
+	height: 50px;
+	background-color: #fff;
+}
+#musicMV .mv-mask .volume-all {}
+#musicMV .mv-mask .volume-current {}
+#musicMV .mv-mask .volume-slider {}
+#musicMV .mv-mask #fullscreen {
+	position: absolute;
+	right: 14px;
+	top: calc(50% - 7px);
+	width: 14px;
+	height: 14px;
+	background: url(../img/sprite.png) -48px -86px;
+}
+#musicMV .mv-mask #fullscreen.default {
+	background: url(../img/sprite.png) -74px -86px;
+}
+/*---------------中心 - MV结束---------------*/
+
+
+/*---------------右下 - 多人聊天开始---------------*/
+#talk {
+	position: absolute;
+	right: 10px;
+	bottom: 20px;
+	width: 360px;
+	z-index: 999;
+}
+#talk .message-all {
+	margin-bottom: 24px;
+}
+#talk .message-content {
+	height: 278px;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+#talk .message-content .main {
+	overflow-y: auto;
+	height: 100%;
+}
+#talk .message-content .msg {
+	width: 100%;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+#talk .message-content .msg .icon {
+	width: 30px;
+	height: 30px;
+	background: yellowgreen;
+	border-radius: 50%;
+	border: 1px solid #000;
+}
+#talk .message-content .msg .content {
+	max-width: 316px;
+	line-height: 30px;
+}
+#talk .message-content .msg .content p {
+	font-size: 12px;
+	border: 1px solid #000;
+	border-radius: 10px;
+	padding: 0 6px;
+	position: relative;
+}
+#talk .message-content .msg .content p::after {
+	content: "";
+	position: absolute;
+	top: 7px;
+	width: 0;
+	height: 0;
+	border-width: 8px;
+	border-style: solid;
+	border-color: transparent;
+}
+#talk .message-content .msg .content span {
+	color: #727272;
+}
+#talk .message-content .msg.left .icon,
+#talk .message-content .msg.left .content {
+	float: left;
+}
+#talk .message-content .msg.left .content {
+	padding-left: 12px;
+}
+#talk .message-content .msg.left .content p {
+	color: #b2b2b2;
+	background-color: #404040;
+}
+#talk .message-content .msg.left .content p::after {
+	left: -15px;
+	border-color: transparent #404040 transparent transparent;
+}
+#talk .message-content .msg.right .icon,
+#talk .message-content .msg.right .content {
+	float: right;
+}
+#talk .message-content .msg.right .content {
+	padding-right: 12px;
+}
+#talk .message-content .msg.right .content p {
+	background: -webkit-linear-gradient(rgb(125,231,139), rgb(120,232,208));
+	background: -moz-linear-gradient(rgb(125,231,139), rgb(120,232,208));
+	background: -o-linear-gradient(rgb(125,231,139), rgb(120,232,208));
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(125,231,139)), to(rgb(120,232,208)));
+	background: linear-gradient(rgb(125,231,139), rgb(120,232,208));
+}
+#talk .message-content .msg.right .content p::after {
+	right: -15px;
+	border-color: transparent transparent transparent #7bec94;
+}
+#talk .message-more {
+	width: 27px;
+	height: 6px;
+	margin: 0 auto;
+	cursor: pointer;
+}
+#talk .message-more i {
+	float: left;
+	width: 5px;
+	height: 5px;
+	border: 1px solid #000;
+	border-radius: 50%;
+	margin: 0 1px;
+	background-color: #8e908f;
+}
+#talk .message-more:hover i:nth-of-type(1) {
+	background-color: rgb(125,231,139);
+}
+#talk .message-more:hover i:nth-of-type(2) {
+	background: -webkit-linear-gradient(rgb(125,231,139), rgb(120,232,208));
+	background: -moz-linear-gradient(rgb(125,231,139), rgb(120,232,208));
+	background: -o-linear-gradient(rgb(125,231,139), rgb(120,232,208));
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(125,231,139)), to(rgb(120,232,208)));
+	background: linear-gradient(rgb(125,231,139), rgb(120,232,208));
+}
+#talk .message-more:hover i:nth-of-type(3) {
+	background-color: rgb(120,232,208);
+}
+#talk .message-send {
+	position: relative;
+	height: 40px;
+}
+#talk .message-send .user {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #008000;
+	border: 1px solid #000;
+	z-index: 4;
+	box-sizing: border-box;
+}
+#talk .message-send .content {
+	position: absolute;
+	left: 20px;
+	top: 0;
+	width: 334px;
+	height: 40px;
+	line-height: 40px;
+}
+#talk .message-send .content input {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 264px;
+	height: 40px;
+	font-size: 12px;
+	line-height: 30px;
+	padding: 0 10px 0 28px;
+	background-color: #3e3e3e;
+	text-decoration: none;
+	color: #b2b2b2;
+	z-index: 2;
+}
+#talk .message-send .content button {
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: #7de3d6;
+	border: none;
+	outline: none;
+	width: 100px;
+	height: 40px;
+	border-radius: 20px;
+	padding-left: 26px;
+	box-sizing: border-box;
+}
+#talk .message-send .set-user {
+	position: absolute;
+	left: 0;
+	top: -40px;
+	width: 200px;
+	height: 40px;
+	background-image: url(../img/bg.gif);
+}
+#talk .message-send .set-user .set-icon {
+	float: left;
+	width: 36px;
+	height: 36px;
+	margin-right: 6px;
+	border-radius: 20px;
+	background: url(../img/sprite.png) no-repeat -83px -33px #3e3e3e;
+}
+#talk .message-send .set-user .set-name {
+	float: left;
+	width: 100px;
+	height: 36px;
+	color: #b2b2b2;
+	padding: 0 6px;
+	font-size: 12px;
+	line-height: 36px;
+	margin-right: 6px;
+	text-align: center;
+	border-radius: 20px;
+	background-color: #3e3e3e;
+}
+#talk .message-send .set-user .set-ok {
+	width: 36px;
+	height: 36px;
+	border: none;
+	outline: none;
+	border-radius: 50%;
+	background: -webkit-linear-gradient(rgb(125,231,139), rgb(120,232,208));
+	background: -moz-linear-gradient(rgb(125,231,139), rgb(120,232,208));
+	background: -o-linear-gradient(rgb(125,231,139), rgb(120,232,208));
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(125,231,139)), to(rgb(120,232,208)));
+	background: linear-gradient(rgb(125,231,139), rgb(120,232,208));
+}
+/*---------------右下 - 多人聊天结束---------------*/
+
+
+/*---------------右上 - 在线人数开始---------------*/
+#currentUser {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+#currentUser .current-number {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	font-weight: 500;
+	font-size: 18px;
+	border-radius: 50%;
+	background-color: #52f2c4;
+}
+#currentUser .current-list {
+	position: absolute;
+	right: 0;
+	top: 60px;
+	width: 156px;
+	height: 100px;
+	border-radius: 4px;
+	background: red;
+	overflow-y: auto;
+}
+#currentUser .current-list .content {
+	padding: 10px;
+	box-sizing: border-box;
+}
+#currentUser .current-list .content p {
+	line-height: 30px;
+}
+#currentUser .current-list .content p span {
+	float: right;
+}
+/*---------------右上 - 在线人数结束---------------*/
+
+
+/*---------------左上 - canvas开始---------------*/
+#canvas {
+	position: fixed;
+	left: 25px;
+	top: 0;
+	width: 128px;
+	height: 370px;
+	z-index: 1;
+}
+/*---------------左上 - canvas结束---------------*/
