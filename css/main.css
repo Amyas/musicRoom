@@ -26,13 +26,14 @@ body {
 	opacity: 0;
 	padding-left: 20px;
 	box-sizing: border-box;
-	background: -webkit-linear-gradient(rgba(125,231,139,0.9), rgba(120,232,208,1));
-	background: -moz-linear-gradient(rgba(125,231,139,0.9), rgba(120,232,208,1));
-	background: -o-linear-gradient(rgba(125,231,139,0.9), rgba(120,232,208,1));
-	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(125,231,139,0.9)), to(rgba(120,232,208,1)));
-	background: linear-gradient(rgba(125,231,139,0.9), rgba(120,232,208,1));
+	background: -webkit-linear-gradient(rgba(125,231,139,1), rgba(120,232,208,1));
+	background: -moz-linear-gradient(rgba(125,231,139,1), rgba(120,232,208,1));
+	background: -o-linear-gradient(rgba(125,231,139,1), rgba(120,232,208,1));
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(125,231,139,1)), to(rgba(120,232,208,1)));
+	background: linear-gradient(rgba(125,231,139,1), rgba(120,232,208,1));
 	overflow: hidden;
 	transition: .6s;
+	z-index: 2;
 }
 #musicList > .title {
 	width: 100%;
@@ -361,6 +362,7 @@ body {
 	height: 4px;
 	border-radius: 0 5px 5px 0;
 	background: linear-gradient(to right,rgba(125,231,139,0.9), rgba(120,232,208,1));
+	transition: all .6s;
 }
 
 
@@ -419,7 +421,7 @@ body {
 /*---------------顶部 - 搜索功能开始---------------*/
 #musicSearch {
 	position: absolute;
-	left: calc(50% - 103px - 57px);
+	left: calc(50% - 90px - 57px);
 	top: -26px;
 	width: 206px;
 	height: 26px;
@@ -452,7 +454,7 @@ body {
 /*---------------中心 - 歌词开始---------------*/
 #lyric {
 	position: absolute;
-	left: 50%;
+	left: calc(50% - 100px);
 	top: 50%;
 	width: 300px;
 	height: 256px;
@@ -474,6 +476,7 @@ body {
 	top: 20px;
 	width: 100%;
 	transform: translateX(-50%);
+	transition: all .6s;
 }
 #lyric .lyric-list li {
 	position: relative;
@@ -505,7 +508,7 @@ body {
 	display: none;
 	position: absolute;
 	left: 0;
-	top: 128px;
+	top: 135px;
 	width: 100%;
 	height: 1px;
 	border-top: 1px dashed #8e908f;

@@ -1,12 +1,13 @@
 /*
 	数据创建
  */
+//音乐列表
 function musiListHTML(data){
 	var html = '';
-	for (var i = 0; i < 30; i++) {
+	for (var i = 0; i < 3; i++) {
 		var playTime = data[i].bMusic.playTime;
 		var musicDate = formatDate(playTime);
-		html += '<li data-mp3="'+data[i].mp3Url.replace('m','p')+'">'+
+		html += '<li data-songid="'+data[i].id+'" data-mp3="'+data[i].mp3Url.replace('m','p')+'">'+
 					'<div class="cover">'+
 						'<img src="'+data[i].album.picUrl+'"/>'+
 					'</div>'+
@@ -24,6 +25,21 @@ function musiListHTML(data){
 					'<span class="play-icon"></span>'+
 				'</div>'+
 			'</li>';
+	}
+	return html;
+}
+
+
+//歌词
+function lyrHTML(data){
+	var html = '';
+	for (var i = 0; i < data.length; i++) {
+		data[i][0] = data[i][0].substring(1,data[i][0].length - 1);
+		var m = Number(data[i][0].substring(0,2)) * 60;
+		var s = Number(data[i][0].substring(3,5));
+		var s1 = Number(data[i][0].substring(6));
+		var str = (m+s) + '.' + String(s1);
+		html += '<li data-time="'+str+'">'+data[i][1]+'</li>';
 	}
 	return html;
 }
