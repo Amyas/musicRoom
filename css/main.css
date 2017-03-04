@@ -8,10 +8,14 @@ img {vertical-align: middle;}
 h2 {font-weight: normal;}
 input{outline: none;border: none;}
 /*---------------默认样式---------------*/
+html {
+	width: 100%;
+	height: 100%;
+}
 body {
 	position: relative;
 	min-width: 1180px;
-	min-height: 600px;
+	min-height: 100%;
 	overflow: hidden;
 }
 
@@ -25,16 +29,28 @@ body {
 	z-index: 99999;
 	background: #000;
 }
-:-webkit-full-screen #musicMV .mv-mask .mv-progress {
+:-moz-full-screen #musicMV{
+	left: 0 !important;
+	top: 0 !important;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	background: #000;
+}
+:-webkit-full-screen #musicMV .mv-mask .mv-progress{
 	width: calc(100% - 40px - 157px - 14px);
 }
-:-webkit-full-screen video {
-width: 100%;
-height: 100%;
+:-moz-full-screen #musicMV .mv-mask .mv-progress {
+	width: calc(100% - 40px - 157px - 14px);
 }
-:-moz-full-screen video{
-width: 100%;
-height: 100%;
+:-webkit-full-screen video{
+	width: 100%;
+	height: 100%;
+}
+
+:-moz-full-screen video {
+	width: 100%;
+	height: 100%;
 }
 
 /*---------------左侧 - 音乐列表开始---------------*/
@@ -550,6 +566,7 @@ height: 100%;
 	box-shadow: 0px 0px 5px 1px rgba(50,48,49,0.8);
 	overflow: hidden;
 	z-index: 1000;
+	background: #000;
 }
 #musicMV .content {
 	position: relative;

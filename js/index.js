@@ -177,6 +177,7 @@ api.xhr.onreadystatechange = function(){
 //搜索列表渲染
 musicSearchInp.onkeydown = function(ev){
 	if (ev.keyCode == 13 && this.value != '') {
+		am.startAm();
 		var api = new AjaxApi('search',this.value);
 		api.xhr.onreadystatechange = function(){
 			if (api.xhr.readyState == 4) {
@@ -542,7 +543,6 @@ Music.prototype = {
 
 			//歌曲未加载成功解决方案
 			if (_this.oAudio.error) {
-				alert('网络错误,重新加载歌曲');
 				_this.oAudio.load();
 			}
 		},1000);
@@ -660,7 +660,8 @@ Music.prototype = {
 			if (mv) {
 				mv.addEventListener('click',function(ev){
 					//暂停歌曲播放
-					_this.playOnOff();
+					_this.oAudio.pause();
+					_this.playBtn.className = 'music-play-btn';
 					//获取mvid
 					var mvid = this.dataset.mvid;
 					//mv加载
@@ -778,36 +779,43 @@ Music.prototype = {
 		this.mvTimer = null;
 		//mv时间初始化
 		this.mvCurrentSpan = null; //当前时间span
-		setTimeout(function(){
-			var duration = formatDate(_this.video.duration * 1000);
-			if (onOff) {
-				_this.mvTime.innerHTML = '<span>00:00</span> / ' + duration.m + ':' + duration.s;
+
+		var timer = null;
+		timer = setInterval(function(){
+			if (_this.video.duration) {
+				clearInterval(timer);
+				var duration = formatDate(_this.video.duration * 1000);
+				if (onOff) {
+					_this.mvTime.innerHTML = '<span>00:00</span> / ' + duration.m + ':' + duration.s;
+				}
+				_this.mvCurrentSpan = _this.mvTime.getElementsByTagName('span')[0];
+				_this.mvTimer = setInterval(function(){
+					//缓存同步
+					var cache = _this.video.buffered.end(0);
+					var cacheScale = cache / _this.video.duration;
+					_this.mvCache.style.width = cacheScale * _this.mvMask.offsetWidth + 'px';
+
+					//进度同步
+					var scale = _this.video.currentTime / _this.video.duration;
+					_this.mvCurrent.style.width = scale * _this.mvMask.offsetWidth + 'px';
+
+					//滑块同步
+					_this.mvSlider.style.left = scale * _this.mvMask.offsetWidth + 'px';
+
+					//时间同步
+					var currentTime = formatDate(_this.video.currentTime * 1000);
+					_this.mvCurrentSpan.innerHTML = currentTime.m + ':' + currentTime.s;
+
+					//MV播放结束
+					if (_this.video.ended) {
+						_this.mvPlayBtn.className = 'mv-play';
+					}
+				},1000);
 			}
-			_this.mvCurrentSpan = _this.mvTime.getElementsByTagName('span')[0];
-		},500);
+		},100);
 
-		this.mvTimer = setInterval(function(){
-			//缓存同步
-			var cache = _this.video.buffered.end(0);
-			var cacheScale = cache / _this.video.duration;
-			_this.mvCache.style.width = cacheScale * _this.mvMask.offsetWidth + 'px';
 
-			//进度同步
-			var scale = _this.video.currentTime / _this.video.duration;
-			_this.mvCurrent.style.width = scale * _this.mvMask.offsetWidth + 'px';
 
-			//滑块同步
-			_this.mvSlider.style.left = scale * _this.mvMask.offsetWidth + 'px';
-
-			//时间同步
-			var currentTime = formatDate(_this.video.currentTime * 1000);
-			_this.mvCurrentSpan.innerHTML = currentTime.m + ':' + currentTime.s;
-
-			//MV播放结束
-			if (_this.video.ended) {
-				_this.mvPlayBtn.className = 'mv-play';
-			}
-		},500);
 	},
 
 	//MV滑块拖拽
@@ -837,7 +845,6 @@ Music.prototype = {
 				//mv进度/缓存进度同步
 				_this.mvSync(false);
 				if (_this.video.error) {
-					alert('网络错误,重新加载MV')
 					_this.video.load();
 				}
 				document.onmousemove = document.onmouseup = null;
@@ -850,6 +857,7 @@ Music.prototype = {
 	mvChange:function(){
 		var _this = this;
 		addWheel(this.videoMask,function(down){
+			_this.mvVolMax.style.opacity = 1;
 			var vol = _this.video.volume;
 			if(down){
 				//向上
@@ -871,6 +879,10 @@ Music.prototype = {
 			//改变高度
 			var scale = _this.video.volume / 1;
 			_this.mvVolumeCurrent.style.height = scale * _this.mvVolMax.offsetHeight + 'px';
+			//隐藏音量
+			setTimeout(function(){
+				_this.mvVolMax.style.opacity = 0;
+			},1000);
 		});
 	},
 
