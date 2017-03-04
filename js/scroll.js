@@ -8,15 +8,15 @@ function customScrollBar(box,content,scrollBar){
 	this.contentH = content.scrollHeight;
 	this.scrollBar = document.getElementById(scrollBar);
 	this.scroll = this.scrollBar.getElementsByClassName('scroll')[0];
-	
+
 	this.disY = 0;
-	
+
 	if(this.boxH < this.contentH){ //滚动条要显示
 		this.scrollBar.style.display = 'block';
 		this.scaleBarH = (this.boxH/this.contentH).toFixed(1)*1;
 		this.scrollH = this.scrollBar.offsetHeight;
 		this.scroll.style.height = this.scrollH * this.scaleBarH + 'px';
-		
+
 		this.timer = null;
 		this.init();
 	}
@@ -53,14 +53,14 @@ customScrollBar.prototype.init = function(){
 customScrollBar.prototype.clickDown = function(ev){
 	var _this = this;
 	this.disY = ev.pageY - this.scroll.offsetTop;
-	
+
 	function move(ev){
 		_this.fnMove(ev);
 	}
 	function up(ev){
 		_this.fnUp(move,up);
 	}
-	
+
 	document.addEventListener('mousemove',move);
 	document.addEventListener('mouseup',up);
 }
@@ -76,7 +76,7 @@ customScrollBar.prototype.fnMove = function(ev){
 
 	var scale = t/(this.scrollH-this.scroll.offsetHeight);
 	this.content.style.top = scale * (this.boxH-this.contentH) + 'px';
-	
+
 	ev.preventDefault();
 }
 
@@ -121,7 +121,24 @@ customScrollBar.prototype.addWheel = function(obj,fn){
 		}else{
 			down = ev.detail<0?true:false;
 		}
-		
+
+		fn && fn(down);
+		ev.preventDefault();
+	}
+}
+
+
+function addWheel(obj,fn){
+	obj.addEventListener('mousewheel',fn1);
+	obj.addEventListener('DOMMouseScroll',fn1);
+	function fn1(ev){
+		var down = true;
+		if(ev.wheelDelta){
+			down = ev.wheelDelta>0?true:false;
+		}else{
+			down = ev.detail<0?true:false;
+		}
+
 		fn && fn(down);
 		ev.preventDefault();
 	}
